@@ -19,10 +19,12 @@ service: auth-server
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 frameworkVersion: "2"
-
 provider:
   name: aws
   runtime: nodejs12.x
+  apiGateway: { shouldStartNameWithService: true }
+  stage: "dev"
+
   lambdaHashingVersion: 20201221
 
   # you can overwrite defaults here
