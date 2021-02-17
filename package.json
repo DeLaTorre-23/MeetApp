@@ -2,7 +2,7 @@
   "name": "meet",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DeLaTorre-23.github.io/MeetApp/",
+  "homepage": "https://delatorre-23.github.io/MeetApp/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
