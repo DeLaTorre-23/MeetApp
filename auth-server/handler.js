@@ -20,7 +20,7 @@ const credentials = {
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
   redirect_uris: ["https://delatorre-23.github.io/MeetApp/"],
-  javascript_origins: ["https://DeLaTorre-23.github.io", "http://localhost:3000"],
+  javascript_origins: ["https://delatorre-23.github.io", "http://localhost:3000"],
 };
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
 const oAuth2Client = new google.auth.OAuth2(
@@ -60,25 +60,3 @@ module.exports.getAuthURL = async () => {
   };
 };
 
-
-
-{/*
-'use strict';
-
-module.exports.hello = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
-};
-*/}
