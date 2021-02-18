@@ -148,12 +148,14 @@ module.exports.getCalendarEvents = async (event) => {
       }
     );
   })
-  .then((result) => {
+  .then((results) => {
 
     // Will be run when the promise is resolved.
     return {
       statusCode: 200,
-      body: JSON.stringify({ events: results.data.items }),
+      body: JSON.stringify({ 
+        events: results.data.items 
+      }),
     };
   })
   .catch((err) => {
