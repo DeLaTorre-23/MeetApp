@@ -7,6 +7,7 @@
 # package dependecies
 node_modules
 jspm-packages
+.cache
 
 # serverless directories
 .serverless
