@@ -34,13 +34,12 @@ class Event extends Component {
         {this.state.showHideDetails && (
           <div className="event-details">
             <h3>About event:</h3>
-            <a href={event.htmlLink} target="_blank">
+            <a href={event.htmlLink} target="_blank" rel="noreferrer">
               See details on Google calendar
             </a>
             <p>{event.description}</p>
           </div>
         )}
-        <br />
         <button
           type="button"
           className="expand-btn"

@@ -60,9 +60,6 @@ describe("<CitySearch /> component", () => {
     expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
   });
 
-  // -------  Test Scenarios 3:
-  // -------  User Can Select a City from the List of Suggestions.
-
   test("selecting a suggestion should change query state", () => {
     CitySearchWrapper.setState({
       query: "Berlin",
