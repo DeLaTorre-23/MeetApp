@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import moment from "moment";
 class Event extends Component {
   state = {
     showHideDetails: false,
   };
 
+  // Toggle show/hide event on click
   handleShowHideBtn = () => {
     if (this.state.showHideDetails === true) {
       this.setState({ showHideDetails: false });
@@ -12,24 +14,38 @@ class Event extends Component {
     }
   };
 
+  // Format time for readability
+  formatTime = () => {
+    const time = this.props.event.start.dateTime;
+    const formattedTime = moment(time).format("dddd, MMMM Do YYYY, h:mm a");
+    return <span className="start-dateTime">{`${formattedTime}`}</span>;
+  };
+
   render() {
     const { event } = this.props;
     return (
       <div className="event-container">
-        <h1>{event.summary}</h1>
-        <p>{event.dateTime}</p>
+        <h1 className="summary">{event.summary}</h1>
+        <p>{this.formatTime}</p> {/* {event.start.dataTime } */}
         <p>@{event.summary}</p>
-        <p className="location">{event.location}</p>
-
+        <div className="location-container">
+          <span className="location">{event.location}</span>
+        </div>
         {this.state.showHideDetails && (
           <div className="event-details">
             <h3>About event:</h3>
-            <a href={event.htmlLink}>See details on Google calendar</a>
+            <a href={event.htmlLink} target="_blank">
+              See details on Google calendar
+            </a>
             <p>{event.description}</p>
           </div>
         )}
-
-        <button className="expand-btn" onClick={() => this.handleShowHideBtn()}>
+        <br />
+        <button
+          type="button"
+          className="expand-btn"
+          onClick={() => this.handleShowHideBtn()}
+        >
           {!this.state.showHideDetails ? "show Details" : "hide details"}
         </button>
       </div>
