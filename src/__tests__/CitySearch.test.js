@@ -50,7 +50,7 @@ describe("<CitySearch /> component", () => {
     }
   });
 
-  test("Suggestion list match the query when changed", () => {
+  test("Suggestions list match the query when changed", () => {
     CitySearchWrapper.setState({ query: "", suggestions: [] });
     CitySearchWrapper.find(".city").simulate("change", {
       target: { value: "Berlin" },
@@ -69,5 +69,34 @@ describe("<CitySearch /> component", () => {
     const suggestions = CitySearchWrapper.state("suggestions");
     CitySearchWrapper.find(".suggestions li").at(0).simulate("click");
     expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
+  });
+
+  test("Selecting the CitySearch input will reveal the suggestions list", () => {
+    CitySearchWrapper.find(".city").simulate("focus");
+    expect(CitySearchWrapper.state("showSuggestions")).toBe(true);
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({
+      display: "none",
+    });
+  });
+
+  test("Selecting a suggestion should hide the suggestions list", () => {
+    CitySearchWrapper.setState({
+      query: "Berlin",
+      showSuggestions: undefined,
+    });
+    CitySearchWrapper.find(".suggestions li").at(0).simulate("click");
+    expect(CitySearchWrapper.state("showSuggestions")).toBe(false);
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).toEqual({
+      display: "none",
+    });
+  });
+
+  test("Suggestions list will appear upon having a focus on city input field", () => {
+    CitySearchWrapper.setState({
+      query: "",
+      suggestions: locations,
+    });
+    CitySearchWrapper.find(".city").simulate("focus");
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).toEqual({});
   });
 });

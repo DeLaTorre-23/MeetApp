@@ -14,11 +14,11 @@ describe("<App /> component", () => {
     AppWrapper = shallow(<App />);
   });
 
-  test("Render list of events", () => {
+  test("Render list of event Component", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
 
-  test("Render CitySearch", () => {
+  test("Render CitySearch Component", () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   });
 });
