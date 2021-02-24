@@ -12,24 +12,24 @@ describe("<Event /> component", () => {
     EventWrapper = shallow(<Event event={event} />);
   });
 
-  test("should render with correct event prop", () => {
+  test("Render with correct event prop", () => {
     expect(EventWrapper.instance().props.event).toEqual(event);
   });
 
-  test("render event details correctly", () => {
+  test("Render event details correctly", () => {
     expect(EventWrapper.find(".event-container")).toHaveLength(1);
   });
 
-  test("should render details button", () => {
+  test("Render details button", () => {
     expect(EventWrapper.find(".expand-btn")).toHaveLength(1);
   });
 
-  test("show event details", () => {
+  test("Show event details", () => {
     EventWrapper.setState({ showHideDetails: true });
     EventWrapper.find(".expand-btn").simulate("click");
   });
 
-  test("hide event details", () => {
+  test("Hide event details", () => {
     EventWrapper.setState({ showHideDetails: false });
     EventWrapper.find(".expand-btn").simulate("click");
   });

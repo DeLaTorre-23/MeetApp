@@ -9,23 +9,25 @@ describe("<CitySearch /> component", () => {
   let locations, CitySearchWrapper;
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+    CitySearchWrapper = shallow(
+      <CitySearch locations={locations} updateEvents={() => {}} />
+    );
   });
 
-  test("render text input", () => {
+  test("Render text input", () => {
     expect(CitySearchWrapper.find(".city")).toHaveLength(1);
   });
 
-  test("render a list of suggestions", () => {
+  test("Render a list of suggestions", () => {
     expect(CitySearchWrapper.find(".suggestions")).toHaveLength(1);
   });
 
-  test("render text input correctly", () => {
+  test("Render text input correctly", () => {
     const query = CitySearchWrapper.state("query");
     expect(CitySearchWrapper.find(".city").prop("value")).toBe(query);
   });
 
-  test("change state when text input changes", () => {
+  test("Change state when text input changes", () => {
     CitySearchWrapper.setState({
       query: "Munich",
     });
@@ -34,7 +36,7 @@ describe("<CitySearch /> component", () => {
     expect(CitySearchWrapper.state("query")).toBe("Berlin");
   });
 
-  test("render list of suggestions correctly", () => {
+  test("Render list of suggestions correctly", () => {
     const locations = extractLocations(mockData);
     CitySearchWrapper.setState({ suggestions: locations });
     const suggestions = CitySearchWrapper.state("suggestions");
@@ -48,7 +50,7 @@ describe("<CitySearch /> component", () => {
     }
   });
 
-  test("suggestion list match the query when changed", () => {
+  test("Suggestion list match the query when changed", () => {
     CitySearchWrapper.setState({ query: "", suggestions: [] });
     CitySearchWrapper.find(".city").simulate("change", {
       target: { value: "Berlin" },
@@ -60,7 +62,7 @@ describe("<CitySearch /> component", () => {
     expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
   });
 
-  test("selecting a suggestion should change query state", () => {
+  test("Selecting a suggestion should change query state", () => {
     CitySearchWrapper.setState({
       query: "Berlin",
     });
