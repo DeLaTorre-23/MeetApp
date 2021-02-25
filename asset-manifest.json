@@ -1,25 +1,24 @@
 {
   "files": {
-    "main.css": "/MeetApp/static/css/main.7d180cbf.chunk.css",
-    "main.js": "/MeetApp/static/js/main.453d0e25.chunk.js",
-    "main.js.map": "/MeetApp/static/js/main.453d0e25.chunk.js.map",
-    "runtime-main.js": "/MeetApp/static/js/runtime-main.9e363a3d.js",
-    "runtime-main.js.map": "/MeetApp/static/js/runtime-main.9e363a3d.js.map",
-    "static/js/2.e4f6d3e5.chunk.js": "/MeetApp/static/js/2.e4f6d3e5.chunk.js",
-    "static/js/2.e4f6d3e5.chunk.js.map": "/MeetApp/static/js/2.e4f6d3e5.chunk.js.map",
-    "static/js/3.a30baec7.chunk.js": "/MeetApp/static/js/3.a30baec7.chunk.js",
-    "static/js/3.a30baec7.chunk.js.map": "/MeetApp/static/js/3.a30baec7.chunk.js.map",
+    "main.css": "/MeetApp/static/css/main.0c5a77d5.chunk.css",
+    "main.js": "/MeetApp/static/js/main.2372b769.chunk.js",
+    "main.js.map": "/MeetApp/static/js/main.2372b769.chunk.js.map",
+    "runtime-main.js": "/MeetApp/static/js/runtime-main.4c022f1a.js",
+    "runtime-main.js.map": "/MeetApp/static/js/runtime-main.4c022f1a.js.map",
+    "static/js/2.08d12355.chunk.js": "/MeetApp/static/js/2.08d12355.chunk.js",
+    "static/js/2.08d12355.chunk.js.map": "/MeetApp/static/js/2.08d12355.chunk.js.map",
+    "static/js/3.737a9f55.chunk.js": "/MeetApp/static/js/3.737a9f55.chunk.js",
+    "static/js/3.737a9f55.chunk.js.map": "/MeetApp/static/js/3.737a9f55.chunk.js.map",
     "index.html": "/MeetApp/index.html",
     "service-worker.js": "/MeetApp/service-worker.js",
     "service-worker.js.map": "/MeetApp/service-worker.js.map",
-    "static/css/main.7d180cbf.chunk.css.map": "/MeetApp/static/css/main.7d180cbf.chunk.css.map",
-    "static/js/2.e4f6d3e5.chunk.js.LICENSE.txt": "/MeetApp/static/js/2.e4f6d3e5.chunk.js.LICENSE.txt",
-    "static/media/logo.2d27ead7.svg": "/MeetApp/static/media/logo.2d27ead7.svg"
+    "static/css/main.0c5a77d5.chunk.css.map": "/MeetApp/static/css/main.0c5a77d5.chunk.css.map",
+    "static/js/2.08d12355.chunk.js.LICENSE.txt": "/MeetApp/static/js/2.08d12355.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.9e363a3d.js",
-    "static/js/2.e4f6d3e5.chunk.js",
-    "static/css/main.7d180cbf.chunk.css",
-    "static/js/main.453d0e25.chunk.js"
+    "static/js/runtime-main.4c022f1a.js",
+    "static/js/2.08d12355.chunk.js",
+    "static/css/main.0c5a77d5.chunk.css",
+    "static/js/main.2372b769.chunk.js"
   ]
 }
