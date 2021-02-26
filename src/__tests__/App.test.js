@@ -6,6 +6,7 @@ import { extractLocations, getEvents } from "../api";
 import App from "../App";
 import EventList from "../EventList";
 import CitySearch from "../CitySearch";
+import NumberOfEvents from "../NumberOfEvents";
 
 // ----------   UNIT TESTING  ----------
 describe("<App /> component", () => {
@@ -20,6 +21,10 @@ describe("<App /> component", () => {
 
   test("Render CitySearch Component", () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+  });
+
+  test("Render number of events Component", () => {
+    expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
 });
 
@@ -40,6 +45,28 @@ describe("<App /> integration", () => {
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(
       AppLocationsState
     );
+    AppWrapper.unmount();
+  });
+
+  test('App passes "eventCount" state as a prop to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const AppEventCountState = AppWrapper.state("eventCount");
+    expect(AppWrapper.find(NumberOfEvents).props().locations).not.toEqual(
+      AppEventCountState
+    );
+    AppWrapper.unmount();
+  });
+
+  test("get list on change number of events by user", async () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const locations = extractLocations(mockData);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    NumberOfEventsWrapper.setState({ events: locations, eventCount: 5 });
+    NumberOfEventsWrapper.find(".event-number-input").simulate("change");
+    expect(NumberOfEventsWrapper.state("eventCount")).toEqual("5");
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith("", "5");
     AppWrapper.unmount();
   });
 
