@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+
 class Event extends Component {
   state = {
     showHideDetails: false,
@@ -26,10 +27,11 @@ class Event extends Component {
     return (
       <div className="event-container">
         <h1 className="summary">{event.summary}</h1>
-        <p>{this.formatTime}</p> {/* {event.start.dataTime } */}
-        <p>@{event.summary}</p>
+        <div className="time">{this.formatTime()}</div>
+        {/* {event.start.dateTime} */}
         <div className="location-container">
-          <span className="location">{event.location}</span>
+          <p>@{event.summary}</p>
+          <span className="location">| {event.location}</span>
         </div>
         {this.state.showHideDetails && (
           <div className="event-details">

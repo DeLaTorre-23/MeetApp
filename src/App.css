@@ -1,4 +1,6 @@
+/* -----  GENERALS STYLES ----- */
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
 .App {
   text-align: center;
   padding: 2% 5%;
@@ -20,8 +22,19 @@ p {
 .display-none {
   display: none;
 }
+
 .showSuggestions {
   display: block;
+}
+
+/* -----  CitySearch COMPONENT ----- */
+.CitySearch {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 300px;
+  max-width: 300px;
+  margin: auto;
+  position: relative;
 }
 
 input[type="text"],
@@ -38,15 +51,6 @@ input[type="number"] {
 
 .city {
   width: 250px;
-}
-
-.CitySearch {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
-  margin: auto;
-  position: relative;
 }
 
 .suggestions {
@@ -76,6 +80,7 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+/* -----  EventList COMPONENT ----- */
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
@@ -85,7 +90,8 @@ input[type="number"] {
   position: relative;
 }
 
-.details-btn {
+.details-btn,
+.expand-btn {
   position: absolute;
   right: 5px;
   bottom: 5px;

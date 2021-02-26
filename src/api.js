@@ -2,10 +2,11 @@ import { mockData } from "./mock-data";
 import axios from "axios";
 
 import NProgress from "nprogress";
+import "./nprogress.css";
 
 // ----------  No Access Token Found in localStorage  ----------
-export const getAccessToken = async = () => {
-  const accessToken = localStorage.getItem('access_token');
+export const getAccessToken = async () => {
+  const accessToken = localStorage.getItem("access_token");
   const tokenCheck = accessToken && (await checkToken(accessToken));
 
   if (!accessToken || tokenCheck.error) {
@@ -22,13 +23,15 @@ export const getAccessToken = async = () => {
     return code && getToken(code);
   }
   return accessToken;
-}
+};
 
 // ----------  To get a new Token  ----------
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
-    'https://e5clitpv5b.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+    "https://e5clitpv5b.execute-api.eu-central-1.amazonaws.com/dev/api/token" +
+      "/" +
+      encodeCode
   )
     .then((res) => {
       return res.json();
@@ -39,7 +42,6 @@ const getToken = async (code) => {
 
   return access_token;
 };
-
 
 // ----------  Access Token Found in localStorage  ----------
 const checkToken = async (accessToken) => {
@@ -65,7 +67,10 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url = 'https://e5clitpv5b.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
+    const url =
+      "https://e5clitpv5b.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" +
+      "/" +
+      token;
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
@@ -76,7 +81,6 @@ export const getEvents = async () => {
     return result.data.events;
   }
 };
-
 
 // ----------  Remove Code/Token from URL once you’re finished with it  ----------
 const removeQuery = () => {
@@ -93,7 +97,6 @@ const removeQuery = () => {
   }
 };
 
-
 /**
  *
  * @param {*} events:
@@ -101,10 +104,9 @@ const removeQuery = () => {
  * It will also remove all duplicates by creating another new array using the spread operator and spreading a Set.
  * The Set will remove all duplicates from the array.
  */
+
 export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
   return locations;
 };
-
-
