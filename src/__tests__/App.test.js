@@ -19,7 +19,7 @@ describe("<App /> component", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
 
-  test("Render CitySearch Component", () => {
+  test("Render city search component", () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   });
 
@@ -57,16 +57,16 @@ describe("<App /> integration", () => {
     AppWrapper.unmount();
   });
 
-  test("get list on change number of events by user", async () => {
+  test("Get list on change number of events by user", async () => {
     const AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
     const locations = extractLocations(mockData);
     AppWrapper.instance().updateEvents = jest.fn();
     AppWrapper.instance().forceUpdate();
-    NumberOfEventsWrapper.setState({ events: locations, eventCount: 5 });
-    NumberOfEventsWrapper.find(".event-number-input").simulate("change");
-    expect(NumberOfEventsWrapper.state("eventCount")).toEqual("5");
-    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith("", "5");
+    NumberOfEventsWrapper.setState({ events: locations, eventCount: 8 });
+    NumberOfEventsWrapper.find(".number-input").simulate("change");
+    expect(NumberOfEventsWrapper.state("eventCount")).toEqual("8");
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith("", "8");
     AppWrapper.unmount();
   });
 

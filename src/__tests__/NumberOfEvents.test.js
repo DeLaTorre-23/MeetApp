@@ -15,7 +15,7 @@ describe("<NumberOfEvents /> component", () => {
   test("Render events value by default", () => {
     expect(
       NumberOfEventsWrapper.find(".number-input").at(0).props().value
-    ).toEqual(30);
+    ).toEqual(undefined);
   });
 
   test("Check placeholder to be Enter number of events", () => {
@@ -25,12 +25,9 @@ describe("<NumberOfEvents /> component", () => {
   });
 
   test("Change state when input changes", () => {
-    const numberOfEvents = { target: { value: 10 } };
-    NumberOfEventsWrapper.find(".number-input").simulate(
-      "change",
-      numberOfEvents
-    );
-    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(10);
+    const eventCount = { target: { value: 10 } };
+    NumberOfEventsWrapper.find(".number-input").simulate("change", eventCount);
+    expect(NumberOfEventsWrapper.state("eventCount")).toBe(10);
   });
 
   test("Check if type is equal to number of events", () => {
