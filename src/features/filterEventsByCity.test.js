@@ -36,7 +36,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     let CitySearchWrapper;
-    let locations;
+    let locations = extractLocations(mockData);
     given("the main page is open", () => {
       CitySearchWrapper = shallow(
         <CitySearch updateEvents={() => {}} locations={locations} />
@@ -52,7 +52,7 @@ defineFeature(feature, (test) => {
     then(
       "the user should receive a list of cities (suggestions) that match what they’ve typed",
       () => {
-        expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(3);
+        expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(2);
       }
     );
   });
