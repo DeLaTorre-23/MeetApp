@@ -1,9 +1,9 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import { loadFeature, defineFeature } from "jest-cucumber";
 
 import App from "../App";
 import CitySearch from "../CitySearch";
+import { loadFeature, defineFeature } from "jest-cucumber";
 import { mockData } from "../mock-data";
 import { extractLocations } from "../api";
 
@@ -25,7 +25,9 @@ defineFeature(feature, (test) => {
       "the user should see the list of upcoming events from all locations",
       () => {
         AppWrapper.update();
-        expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+        expect(AppWrapper.find(".event-container")).toHaveLength(
+          mockData.length
+        );
       }
     );
   });
@@ -94,7 +96,9 @@ defineFeature(feature, (test) => {
     and(
       "the user should receive a list of upcoming events in that city",
       () => {
-        expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+        expect(AppWrapper.find(".event-container")).toHaveLength(
+          mockData.length
+        );
       }
     );
   });

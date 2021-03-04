@@ -1,5 +1,7 @@
 # MEET App
 
+- " npm run start " to run your application locally.
+
 MeetApp is serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.
 
