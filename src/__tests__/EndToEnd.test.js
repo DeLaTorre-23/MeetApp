@@ -1,40 +1,69 @@
-import puppeteer from "puppeteer";
+import React from "react";
+import { mount, shallow } from "enzyme";
+import App from "../App";
+import Event from "../Event";
+import { loadFeature, defineFeature } from "jest-cucumber";
+import { mockData } from "../mock-data";
+import { extractLocations } from "../api";
 
-describe("show/hide an event details", () => {
-  let browser;
-  let page;
-  beforeAll(async () => {
-    jest.setTimeout(30000);
-    browser = await puppeteer.launch({
-      executablePath: "c/Users/PC/AppData/chromium",
-      headless: false,
-      slowMo: 250, // slow down by 250ms
-      ignoreDefaultArgs: ["--disable-extensions"], // ignores default setting that causes timeout errors
-      args: ["--no-sandbox", "--disabled-setupid-sandbox"],
-    }); // Launches the browser
-    page = await browser.newPage(); // Opens a new tab
-    await page.goto("http://localhost:3000/"); // Navigates to https://example.com
-    await page.waitForSelector(".event"); // Takes a screenshot and saves it as “example.png”
+const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
+const localEvents = extractLocations(mockData);
+let EventsWrapper;
+let AppWrapper;
+defineFeature(feature, (test) => {
+  test("An event element is collapsed by default.", ({ given, when, then }) => {
+    given("event detail is collapsed", async () => {
+      AppWrapper = mount(<App />);
+    });
+    when("the user opens the application", () => {
+      // const AppEventsState = AppWrapper.state("events");
+      // expect(AppEventsState).toHaveLength(0);
+    });
+    then("the user can expand the event detail anytime", () => {
+      console.log(localEvents[0]);
+      EventsWrapper = shallow(<Event event={mockData[0]} />);
+      expect(EventsWrapper.find(".expand-btn")).toHaveLength(1);
+    });
   });
-
-  afterAll(() => {
-    browser.close(); // Closes the browser
+  test("User can expand an event to see its details.", ({
+    given,
+    when,
+    then,
+  }) => {
+    given("the event detail is true", () => {
+      AppWrapper = mount(<App />);
+      EventsWrapper.setState({
+        showHideDetails: true,
+      });
+    });
+    when("user click the event", () => {
+      EventsWrapper.find(".expand-btn").simulate("click");
+    });
+    then("the user should see a detailed information about the event", () => {
+      const eventDetails = EventsWrapper.find(".event-details");
+      expect(eventDetails).toHaveLength(0);
+    });
   });
-
-  test("An event element is collapsed by default", async () => {
-    const eventDetails = await page.$(".event-container .event-details");
-    expect(eventDetails).toBeNull();
-  });
-
-  test("User can expand an event to see its details", async () => {
-    await page.click(".event .expand-btn");
-    const eventDetails = await page.$(".event-container .event-details");
-    expect(eventDetails).toBeDefined();
-  });
-
-  test("User can collapse an event to hide its details", async () => {
-    await page.click(".event .expand-btn");
-    const eventDetails = await page.$(".event-container .event-details");
-    expect(eventDetails).toBeNull();
+  test("User can collapse an event to hide its details.", ({
+    given,
+    when,
+    then,
+  }) => {
+    given("the event detail is hidden", () => {
+      AppWrapper = mount(<App />);
+      EventsWrapper.setState({
+        showHideDetails: false,
+      });
+    });
+    when("the user clicks the collapse button", () => {
+      EventsWrapper.find(".expand-btn").simulate("click");
+    });
+    then(
+      "the event element will be collapsed to hide the detail information about that specific event",
+      () => {
+        const eventDetails = EventsWrapper.find(".event-details");
+        expect(eventDetails).toHaveLength(1);
+      }
+    );
   });
 });

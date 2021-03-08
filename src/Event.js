@@ -28,7 +28,6 @@ class Event extends Component {
       <div className="event-container">
         <h1 className="summary">{event.summary}</h1>
         <div className="time">{this.formatTime()}</div>
-        {/* {event.start.dateTime} */}
         <div className="location-container">
           <p>@{event.summary}</p>
           <span className="location">| {event.location}</span>

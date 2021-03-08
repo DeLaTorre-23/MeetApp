@@ -5,11 +5,11 @@ import App from "../App";
 import Event from "../Event";
 import { loadFeature, defineFeature } from "jest-cucumber";
 import { mockData } from "../mock-data";
-import { extractEvents } from "../api";
+import { extractLocations } from "../api";
 
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
-const localEvents = extractEvents(mockData);
-let EventsWrappper;
+const localEvents = extractLocations(mockData);
+let EventWrapper;
 let AppWrapper;
 
 defineFeature(feature, (test) => {
@@ -24,8 +24,8 @@ defineFeature(feature, (test) => {
     });
 
     then("the user can expand the event detail anytime", () => {
-      EventsWrappper = shallow(<Event event={{ localEvents }} />);
-      expect(EventsWrappper.find(".expand-btn")).toHaveLength(0);
+      EventWrapper = shallow(<Event event={{ localEvents }} />);
+      expect(EventWrapper.find(".expand-btn")).toHaveLength(0);
     });
   });
 
@@ -36,17 +36,17 @@ defineFeature(feature, (test) => {
   }) => {
     given("the event detail is true", () => {
       AppWrapper = mount(<App />);
-      EventsWrappper.setState({
+      EventWrapper.setState({
         showHideDetails: true,
       });
     });
 
     when("user click the event", () => {
-      EventsWrappper.find(".expand-btn").simulate("click");
+      EventWrapper.find(".expand-btn").simulate("click");
     });
 
     then("the user should see a detailed information about the event", () => {
-      const eventDetails = EventsWrappper.find(".event-details");
+      const eventDetails = EventWrapper.find(".event-details");
       expect(eventDetails).toHaveLength(1);
     });
   });
@@ -58,19 +58,19 @@ defineFeature(feature, (test) => {
   }) => {
     given("the event detail is hidden", () => {
       AppWrapper = mount(<App />);
-      EventsWrappper.setState({
+      EventWrapper.setState({
         showHideDetails: false,
       });
     });
 
     when("the user clicks the collapse button", () => {
-      EventsWrappper.find(".expand-btn").simulate("click");
+      EventWrapper.find(".expand-btn").simulate("click");
     });
 
     then(
       "the event element will be collapsed to hide the detail information about that specific event",
       () => {
-        const eventDetails = EventsWrappper.find(".event-details");
+        const eventDetails = EventWrapper.find(".event-details");
         expect(eventDetails).toHaveLength(0);
       }
     );
