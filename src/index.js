@@ -23,4 +23,3 @@ atatus.config("bf6e3ecab6a542ed89654c93cf7edaf8").install();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-atatus.notify(new Error("Test Atatus Setup"));
