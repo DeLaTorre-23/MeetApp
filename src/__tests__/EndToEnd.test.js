@@ -4,11 +4,11 @@ import App from "../App";
 import Event from "../Event";
 import { loadFeature, defineFeature } from "jest-cucumber";
 import { mockData } from "../mock-data";
-import { extractLocations } from "../api";
+// import { extractLocations } from "../api";
 
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
-const localEvents = extractLocations(mockData);
-let EventsWrapper;
+// const localEvents = extractLocations(mockData);
+let EventWrapper;
 let AppWrapper;
 defineFeature(feature, (test) => {
   test("An event element is collapsed by default.", ({ given, when, then }) => {
@@ -18,13 +18,14 @@ defineFeature(feature, (test) => {
     when("the user opens the application", () => {
       // const AppEventsState = AppWrapper.state("events");
       // expect(AppEventsState).toHaveLength(0);
+      EventWrapper = shallow(<Event event={mockData[0]} />);
     });
     then("the user can expand the event detail anytime", () => {
-      console.log(localEvents[0]);
-      EventsWrapper = shallow(<Event event={mockData[0]} />);
-      expect(EventsWrapper.find(".expand-btn")).toHaveLength(1);
+      // console.log(localEvents[0]);
+      expect(EventWrapper.find(".expand-btn")).toHaveLength(1);
     });
   });
+
   test("User can expand an event to see its details.", ({
     given,
     when,
@@ -32,18 +33,19 @@ defineFeature(feature, (test) => {
   }) => {
     given("the event detail is true", () => {
       AppWrapper = mount(<App />);
-      EventsWrapper.setState({
+      EventWrapper.setState({
         showHideDetails: true,
       });
     });
     when("user click the event", () => {
-      EventsWrapper.find(".expand-btn").simulate("click");
+      EventWrapper.find(".expand-btn").simulate("click");
     });
     then("the user should see a detailed information about the event", () => {
-      const eventDetails = EventsWrapper.find(".event-details");
+      const eventDetails = EventWrapper.find(".event-details");
       expect(eventDetails).toHaveLength(0);
     });
   });
+
   test("User can collapse an event to hide its details.", ({
     given,
     when,
@@ -51,17 +53,17 @@ defineFeature(feature, (test) => {
   }) => {
     given("the event detail is hidden", () => {
       AppWrapper = mount(<App />);
-      EventsWrapper.setState({
+      EventWrapper.setState({
         showHideDetails: false,
       });
     });
     when("the user clicks the collapse button", () => {
-      EventsWrapper.find(".expand-btn").simulate("click");
+      EventWrapper.find(".expand-btn").simulate("click");
     });
     then(
       "the event element will be collapsed to hide the detail information about that specific event",
       () => {
-        const eventDetails = EventsWrapper.find(".event-details");
+        const eventDetails = EventWrapper.find(".event-details");
         expect(eventDetails).toHaveLength(1);
       }
     );

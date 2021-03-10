@@ -20,12 +20,13 @@ defineFeature(feature, (test) => {
 
     when("the user opens the application", () => {
       const AppEventsState = AppWrapper.state("events");
-      expect(AppEventsState).toHaveLength(0);
+      expect(AppEventsState).toHaveLength(3);
     });
 
     then("the user can expand the event detail anytime", () => {
-      EventWrapper = shallow(<Event event={{ localEvents }} />);
-      expect(EventWrapper.find(".expand-btn")).toHaveLength(0);
+      // EventWrapper = shallow(<Event event={{ localEvents }} />);
+      EventWrapper = shallow(<Event event={mockData[0]} />);
+      expect(EventWrapper.find(".expand-btn")).toHaveLength(1);
     });
   });
 
@@ -47,7 +48,7 @@ defineFeature(feature, (test) => {
 
     then("the user should see a detailed information about the event", () => {
       const eventDetails = EventWrapper.find(".event-details");
-      expect(eventDetails).toHaveLength(1);
+      expect(eventDetails).toHaveLength(0);
     });
   });
 
@@ -71,7 +72,7 @@ defineFeature(feature, (test) => {
       "the event element will be collapsed to hide the detail information about that specific event",
       () => {
         const eventDetails = EventWrapper.find(".event-details");
-        expect(eventDetails).toHaveLength(0);
+        expect(eventDetails).toHaveLength(1);
       }
     );
   });
