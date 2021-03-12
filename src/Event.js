@@ -29,8 +29,8 @@ class Event extends Component {
         <h1 className="summary">{event.summary}</h1>
         <div className="time">{this.formatTime()}</div>
         <div className="location-container">
-          <p>@{event.summary}</p>
-          <span className="location">| {event.location}</span>
+          <p className="summary-event">@ {event.summary}</p>
+          <p className="location-event"> | {event.location}</p>
         </div>
         {this.state.showHideDetails && (
           <div className="event-details">

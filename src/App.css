@@ -1,9 +1,15 @@
 /* -----  GENERALS STYLES ----- */
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
+body {
+  background-color: rgb(243, 233, 233);
+}
+
 .App {
   text-align: center;
+  width: 80%;
   padding: 2% 5%;
+  background-color: lavander;
 }
 
 .App * {
@@ -88,6 +94,20 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+  background-color: rgba(40, 41, 77, 0.4);
+}
+
+/* -----  Event COMPONENT ----- */
+
+.event-container {
+}
+
+.location-container {
+  display: inline-flex;
+}
+
+.summary-event {
+  margin-right: 5px;
 }
 
 .details-btn,
