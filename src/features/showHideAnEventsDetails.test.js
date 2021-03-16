@@ -20,7 +20,7 @@ defineFeature(feature, (test) => {
 
     when("the user opens the application", () => {
       const AppEventsState = AppWrapper.state("events");
-      expect(AppEventsState).toHaveLength(3);
+      expect(AppEventsState).toHaveLength(30);
     });
 
     then("the user can expand the event detail anytime", () => {
