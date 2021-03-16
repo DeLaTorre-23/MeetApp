@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    eventCount: 8,
+    eventCount: 30,
   };
 
   updateEvents = (location, eventCount) => {
@@ -51,17 +51,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Meet App</h1>
-        <CitySearch
-          locations={this.state.locations}
-          eventCount={this.state.eventCount}
-          updateEvents={this.updateEvents}
-        />
-        <NumberOfEvents
-          eventCount={this.state.eventCount}
-          updateEvents={this.updateEvents}
-        />
-        <EventList events={this.state.events} />
+        <div className="main-wrap">
+          <h1>Meet App</h1>
+          <CitySearch
+            locations={this.state.locations}
+            eventCount={this.state.eventCount}
+            updateEvents={this.updateEvents}
+          />
+          <NumberOfEvents
+            eventCount={this.state.eventCount}
+            updateEvents={this.updateEvents}
+          />
+          <EventList events={this.state.events} />
+        </div>
       </div>
     );
   }

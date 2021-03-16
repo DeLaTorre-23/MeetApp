@@ -1,14 +1,47 @@
 /* -----  GENERALS STYLES ----- */
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
-
+@import url(https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Monoton&display=swap);
+* {
+  padding: 0px auto;
+  margin: 0px auto;
+}
 body {
   background-color: rgb(243, 233, 233);
+  background-image: url("img/background.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 0 -50px;
+  scroll-behavior: smooth;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+
+  /* background-size: cover; */
+}
+
+/* -----  Main-Wrap COMPONENT ----- */
+.main-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  flex-basis: 100px;
+  width: 80%;
+  padding-top: 50px;
+}
+
+.main-wrap > h1 {
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: 10px;
+  font-family: "Monoton";
+  font-size: 40px;
+  margin-bottom: 40px;
 }
 
 .App {
   text-align: center;
-  width: 80%;
-  padding: 2% 5%;
+  width: 100%;
+  color: white;
   background-color: lavander;
 }
 
@@ -22,7 +55,7 @@ ul {
 }
 
 p {
-  margin: 5px 0;
+  //margin: 5px 0;
 }
 
 .display-none {
@@ -37,10 +70,13 @@ p {
 .CitySearch {
   display: flex;
   flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
-  margin: auto;
-  position: relative;
+  flex-basis: 90px;
+  margin-top: 23px;
+}
+
+.CitySearch > .city {
+  margin-top: 7px;
+  width: 250px;
 }
 
 input[type="text"],
@@ -53,10 +89,6 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
-}
-
-.city {
-  width: 250px;
 }
 
 .suggestions {
@@ -86,20 +118,46 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+/* -----  NumberOfEvents COMPONENT ----- */
+.NumberOfEvents {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100px;
+  margin-bottom: 23px;
+}
+
+.NumberOfEvents > .number-input {
+  margin-top: 7px;
+  width: 100px;
+  text-align: center;
+}
+
 /* -----  EventList COMPONENT ----- */
+.EventList {
+  width: 80%;
+}
+
+/* -----  Event COMPONENT ----- */
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   position: relative;
-  background-color: rgba(40, 41, 77, 0.4);
+  background-color: rgba(40, 41, 77, 0.7);
 }
 
-/* -----  Event COMPONENT ----- */
-
 .event-container {
+  color: white;
+}
+
+.event-container > h1 {
+  margin-bottom: 15px;
+}
+
+.event-container > .time {
+  margin-bottom: 7px;
 }
 
 .location-container {
@@ -110,12 +168,22 @@ input[type="number"] {
   margin-right: 5px;
 }
 
+.event-details {
+  margin-top: 15px;
+}
+
+.event-details > .link-google {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
 .details-btn,
 .expand-btn {
   position: absolute;
   right: 5px;
   bottom: 5px;
   padding: 5px 8px;
+  margin: 10px;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
