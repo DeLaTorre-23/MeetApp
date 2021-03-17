@@ -159,6 +159,8 @@ input[type="number"] {
 .event {
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   min-width: 47%;
   padding: 10px 10px;
   margin: 10px;
@@ -172,6 +174,8 @@ input[type="number"] {
 .event-container {
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   font-weight: 600;
 }
@@ -212,6 +216,7 @@ input[type="number"] {
 .link-google:hover {
   box-shadow: 0 0 6px #A1EF8B;
 }
+
 .link-google:active {
   background: #1669f2;
 }
@@ -226,8 +231,6 @@ input[type="number"] {
   letter-spacing: 0.7px;
   border-color: #a1ef8b;
   background-color: #d3f6db;
-  color: #5a0b4d;
- 
   outline: none;
   cursor: pointer;
 }
@@ -299,20 +302,6 @@ input[type="number"] {
 
 
 
-.google-btn {
-  width: 184px;
-  height: 42px;
-  margin: 1rem;
-  background-color: #4285f4;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-}
-.google-btn:hover {
-  box-shadow: 0 0 6px #4285f4;
-}
-.google-btn:active {
-  background: #1669f2;
-}
 .google-icon-wrapper {
   position: absolute;
   margin-top: 1px;
