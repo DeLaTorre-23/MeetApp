@@ -27,6 +27,7 @@ body {
   flex-basis: 100px;
   width: 80%;
   padding-top: 50px;
+  padding-bottom: 100px;
 }
 
 .main-wrap > h1 {
