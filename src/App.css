@@ -7,7 +7,7 @@
   margin: 0px auto;
 }
 body {
-  background-color: rgb(243, 233, 233);
+  background-color: #fff;
   background-image: url("img/background.png");
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -36,13 +36,13 @@ body {
   font-family: "Monoton";
   font-size: 40px;
   margin-bottom: 40px;
+  color: #a1ef8b;
 }
 
 .App {
   text-align: center;
   width: 100%;
-  color: white;
-  background-color: lavander;
+  color: #fff;
 }
 
 .App * {
@@ -55,7 +55,7 @@ ul {
 }
 
 p {
-  //margin: 5px 0;
+  margin: 5px 0;
 }
 
 .display-none {
@@ -71,7 +71,7 @@ p {
   display: flex;
   flex-direction: column;
   flex-basis: 90px;
-  margin-top: 23px;
+  /*margin-top: 23px;*/
 }
 
 .CitySearch > .city {
@@ -93,13 +93,17 @@ input[type="number"] {
 
 .suggestions {
   width: 250px;
-  position: absolute;
   z-index: 2;
   align-self: center;
   margin: 0;
-  top: 43px;
+  top: 218px;
+  color: black;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+}
+
+.suggestions:first-child{
+  height: 100px;
 }
 
 .suggestions > li {
@@ -118,6 +122,17 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+/* -----  Alert COMPONENT ----- */
+.Alert {
+  display: inline-flex;
+  position: static;
+  top: 20px;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  align-self: center;
+  text-align: center;
+}
+
 /* -----  NumberOfEvents COMPONENT ----- */
 .NumberOfEvents {
   display: flex;
@@ -134,26 +149,36 @@ input[type="number"] {
 
 /* -----  EventList COMPONENT ----- */
 .EventList {
-  width: 80%;
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 /* -----  Event COMPONENT ----- */
 .event {
-  padding: 10px 10px 35px;
-  margin-bottom: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
+  display: flex;
+  flex-flow: column wrap;
+  min-width: 47%;
+  padding: 10px 10px;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #a1ef8b;
   border-radius: 8px;
   position: relative;
-  background-color: rgba(40, 41, 77, 0.7);
+  background-color: rgba(33, 31, 73, 0.9);
 }
 
 .event-container {
-  color: white;
+  display: flex;
+  flex-flow: column wrap;
+  color: #fff;
+  font-weight: 600;
 }
 
-.event-container > h1 {
+.summary {
   margin-bottom: 15px;
+  color:#a1ef8b;
 }
 
 .event-container > .time {
@@ -170,21 +195,39 @@ input[type="number"] {
 
 .event-details {
   margin-top: 15px;
+  display: flex;
+  flex-flow: column wrap;
 }
 
 .event-details > .link-google {
   margin-top: 7px;
   margin-bottom: 7px;
+  color:  #f2dfd7 ;
+  width: auto;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(56, 40, 40, 0.30);
 }
 
-.details-btn,
+.link-google:hover {
+  box-shadow: 0 0 6px #A1EF8B;
+}
+.link-google:active {
+  background: #1669f2;
+}
+
 .expand-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  padding: 5px 8px;
-  margin: 10px;
-  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: 23px 0px 0px 0px;
+  border-radius: 6px;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  border-color: #a1ef8b;
+  background-color: #d3f6db;
+  color: #5a0b4d;
+ 
   outline: none;
   cursor: pointer;
 }
@@ -222,11 +265,6 @@ input[type="number"] {
   font-family: sans-serif;
 }
 
-.Alert {
-  position: fixed;
-  top: 20px;
-}
-
 .data-vis-wrapper {
   display: flex;
   align-items: center;
@@ -252,6 +290,14 @@ input[type="number"] {
   min-width: 10rem;
   margin: 1rem;
 }
+
+
+
+
+
+
+
+
 
 .google-btn {
   width: 184px;
