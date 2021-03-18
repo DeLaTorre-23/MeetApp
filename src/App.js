@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
@@ -9,10 +8,26 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    events: [],
+    events: "",
     locations: [],
-    eventCount: 30,
+    eventCount: "",
   };
+
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events.slice(0, this.state.eventCount),
+          locations: extractLocations(events),
+        });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   updateEvents = (location, eventCount) => {
     let locationEvents;
@@ -32,22 +47,6 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, this.state.eventCount),
-          locations: extractLocations(events),
-        });
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
   render() {
     return (
       <div className="App">
@@ -59,6 +58,7 @@ class App extends Component {
             updateEvents={this.updateEvents}
           />
           <NumberOfEvents
+            locations={this.state.locations}
             eventCount={this.state.eventCount}
             updateEvents={this.updateEvents}
           />
