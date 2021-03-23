@@ -21,7 +21,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/MeetApp",
+  "start_url": "/MeetApp/",
   "display": "standalone",
   "theme_color": "#fff",
   "background_color": "#000"
