@@ -1,6 +1,5 @@
 import { mockData } from "./mock-data";
 import axios from "axios";
-
 import NProgress from "nprogress";
 import "./nprogress.css";
 
@@ -76,6 +75,12 @@ export const getEvents = async () => {
     return mockData;
   }
 
+  if (!navigator.onLine) {
+    const data = await localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(data).events : [];
+  }
+
   const token = await getAccessToken();
 
   if (token) {
@@ -85,11 +90,13 @@ export const getEvents = async () => {
       "/" +
       token;
     const result = await axios.get(url);
+
     if (result.data) {
       var locations = extractLocations(result.data.events);
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
       localStorage.setItem("locations", JSON.stringify(locations));
     }
+
     NProgress.done();
     return result.data.events;
   }

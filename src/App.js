@@ -32,6 +32,7 @@ class App extends Component {
   updateEvents = (location, eventCount) => {
     let locationEvents;
     getEvents().then((events) => {
+      locationEvents = events;
       if (location === "all" && eventCount === 0) {
         locationEvents = events;
       } else if (location !== "all" && eventCount === 0) {
