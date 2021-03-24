@@ -12,6 +12,7 @@ class App extends Component {
     events: [],
     locations: [],
     eventCount: "",
+    offLineText: "",
   };
 
   updateEvents = (location, eventCount) => {
@@ -42,7 +43,7 @@ class App extends Component {
       });
     } else {
       this.setState({
-        offLineAlert: "",
+        offLineText: "",
       });
     }
 
