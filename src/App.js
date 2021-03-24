@@ -15,6 +15,7 @@ class App extends Component {
     offLineText: "",
   };
 
+  // Filters events based on location and number given in user input
   updateEvents = (location, eventCount) => {
     let locationEvents;
     getEvents().then((events) => {
@@ -30,12 +31,11 @@ class App extends Component {
       this.setState({
         events: locationEvents,
         eventCount,
-        warningText: "",
       });
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
 
     // If the App is OffLine show an Alert
@@ -47,6 +47,9 @@ class App extends Component {
       this.setState({
         offLineText: "",
       });
+    }
+    if (this.mounted) {
+      this.updateEvents();
     }
 
     getEvents().then((events) => {

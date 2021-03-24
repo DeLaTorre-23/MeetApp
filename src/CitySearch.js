@@ -21,6 +21,7 @@ class CitySearch extends Component {
     this.props.updateEvents(suggestion, 0);
   };
 
+  // Displays suggestions based on user input (autocomplete feature)
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.setState({ showSuggestions: true });
@@ -32,6 +33,7 @@ class CitySearch extends Component {
         query: value,
         infoText:
           "We can not find the city you are looking for. Please try another city.",
+        showSuggestions: false,
       });
     } else {
       return this.setState({

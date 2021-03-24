@@ -4,8 +4,10 @@ import { ErrorAlert } from "./Alert";
 class NumberOfEvents extends Component {
   state = {
     eventCount: this.props.eventCount,
+    errorText: "",
   };
 
+  // When user changes number value
   handleNumberEventChanged = (event) => {
     const eventCount = event.target.value;
     if (eventCount < 1) {
