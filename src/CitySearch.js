@@ -8,6 +8,7 @@ class CitySearch extends Component {
     suggestions: [],
     showSuggestions: false,
     infoText: "",
+    locations: this.props.locations,
   };
 
   handleItemClicked = (suggestion) => {

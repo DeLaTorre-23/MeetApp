@@ -30,16 +30,18 @@ class App extends Component {
       this.setState({
         events: locationEvents,
         eventCount,
+        warningText: "",
       });
     });
   };
+
   componentDidMount() {
     this.mounted = true;
 
     // If the App is OffLine show an Alert
     if (!navigator.onLIne) {
       this.setState({
-        offLineText: "You don't have internet (data may not be up to date)",
+        offLineText: "You are currently offline. Data may not be up-to-date.",
       });
     } else {
       this.setState({
