@@ -3,31 +3,16 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { getEvents, extractLocations } from "./api";
+import { OffLineAlert } from "./Alert";
 
 import "./App.css";
 
 class App extends Component {
   state = {
-    events: "",
+    events: [],
     locations: [],
     eventCount: "",
   };
-
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, this.state.eventCount),
-          locations: extractLocations(events),
-        });
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
 
   updateEvents = (location, eventCount) => {
     let locationEvents;
@@ -47,11 +32,39 @@ class App extends Component {
       });
     });
   };
+  componentDidMount() {
+    this.mounted = true;
+
+    // If the App is OffLine show an Alert
+    if (!navigator.onLIne) {
+      this.setState({
+        offLineText: "You don't have internet (data may not be up to date)",
+      });
+    } else {
+      this.setState({
+        offLineAlert: "",
+      });
+    }
+
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events.slice(0, this.state.eventCount),
+          locations: extractLocations(events),
+        });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   render() {
     return (
       <div className="App">
         <div className="main-wrap">
+          <OffLineAlert text={this.state.offLineText} />
           <h1>Meet App</h1>
           <CitySearch
             locations={this.state.locations}
