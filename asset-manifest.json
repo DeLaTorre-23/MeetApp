@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/MeetApp/static/css/main.1947bc1f.chunk.css",
-    "main.js": "/MeetApp/static/js/main.88ad53b3.chunk.js",
-    "main.js.map": "/MeetApp/static/js/main.88ad53b3.chunk.js.map",
+    "main.js": "/MeetApp/static/js/main.a4105868.chunk.js",
+    "main.js.map": "/MeetApp/static/js/main.a4105868.chunk.js.map",
     "runtime-main.js": "/MeetApp/static/js/runtime-main.59189c1e.js",
     "runtime-main.js.map": "/MeetApp/static/js/runtime-main.59189c1e.js.map",
-    "static/js/2.b078cd25.chunk.js": "/MeetApp/static/js/2.b078cd25.chunk.js",
-    "static/js/2.b078cd25.chunk.js.map": "/MeetApp/static/js/2.b078cd25.chunk.js.map",
+    "static/js/2.3082251d.chunk.js": "/MeetApp/static/js/2.3082251d.chunk.js",
+    "static/js/2.3082251d.chunk.js.map": "/MeetApp/static/js/2.3082251d.chunk.js.map",
     "static/js/3.12879dc9.chunk.js": "/MeetApp/static/js/3.12879dc9.chunk.js",
     "static/js/3.12879dc9.chunk.js.map": "/MeetApp/static/js/3.12879dc9.chunk.js.map",
     "index.html": "/MeetApp/index.html",
     "service-worker.js": "/MeetApp/service-worker.js",
     "service-worker.js.map": "/MeetApp/service-worker.js.map",
     "static/css/main.1947bc1f.chunk.css.map": "/MeetApp/static/css/main.1947bc1f.chunk.css.map",
-    "static/js/2.b078cd25.chunk.js.LICENSE.txt": "/MeetApp/static/js/2.b078cd25.chunk.js.LICENSE.txt",
+    "static/js/2.3082251d.chunk.js.LICENSE.txt": "/MeetApp/static/js/2.3082251d.chunk.js.LICENSE.txt",
     "static/media/App.css": "/MeetApp/static/media/background.6278f78d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.59189c1e.js",
-    "static/js/2.b078cd25.chunk.js",
+    "static/js/2.3082251d.chunk.js",
     "static/css/main.1947bc1f.chunk.css",
-    "static/js/main.88ad53b3.chunk.js"
+    "static/js/main.a4105868.chunk.js"
   ]
 }
