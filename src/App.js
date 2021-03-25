@@ -13,33 +13,44 @@ class App extends Component {
     locations: [],
     eventCount: "",
     offLineText: "",
+    currentLocation: "all",
   };
 
   // Filters events based on location and number given in user input
   updateEvents = (location, eventCount) => {
-    let locationEvents;
-    getEvents().then((events) => {
-      locationEvents = events;
-      if (location === "all" && eventCount === 0) {
-        locationEvents = events;
-      } else if (location !== "all" && eventCount === 0) {
-        locationEvents = events.filter((event) => event.location === location);
-        console.log(eventCount);
-      } else if (location === "" && eventCount > 0) {
-        locationEvents = events.slice(0, eventCount);
-      }
-      this.setState({
-        events: locationEvents,
-        eventCount,
+    const { currentLocation, numberOfEvents } = this.state;
+    if (location) {
+      getEvents().then((events) => {
+        const locationEvents =
+          location === "all"
+            ? events
+            : events.filter((event) => event.location === location);
+        let counter = eventCount ? eventCount : this.state.numberOfEvents;
+        const filteredEvents = locationEvents.slice(0, numberOfEvents);
+        this.setState({
+          events: filteredEvents,
+          numberOfEvents: counter,
+          currentLocation: location,
+        });
       });
-    });
+    } else {
+      getEvents().then((events) => {
+        const locationEvents =
+          currentLocation === "all"
+            ? events
+            : events.filter((event) => event.location === currentLocation);
+        const filteredEvents = locationEvents.slice(0, eventCount);
+        this.setState({
+          events: filteredEvents,
+          numberOfEvents: eventCount,
+        });
+      });
+    }
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.mounted = true;
-
-    // If the App is OffLine show an Alert
-    if (!navigator.onLIne) {
+    if (!navigator.onLine) {
       this.setState({
         offLineText: "You are currently offline. Data may not be up-to-date.",
       });
@@ -48,14 +59,11 @@ class App extends Component {
         offLineText: "",
       });
     }
-    if (this.mounted) {
-      this.updateEvents();
-    }
 
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
-          events: events.slice(0, this.state.eventCount),
+          events: events,
           locations: extractLocations(events),
         });
       }
@@ -70,11 +78,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="main-wrap">
-          <OffLineAlert text={this.state.offLineText} />
           <h1>Meet App</h1>
           <CitySearch
             locations={this.state.locations}
-            eventCount={this.state.eventCount}
             updateEvents={this.updateEvents}
           />
           <NumberOfEvents
@@ -82,6 +88,7 @@ class App extends Component {
             eventCount={this.state.eventCount}
             updateEvents={this.updateEvents}
           />
+          <OffLineAlert text={this.state.offLineText} />
           <EventList events={this.state.events} />
         </div>
       </div>
