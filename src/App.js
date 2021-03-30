@@ -4,6 +4,15 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { getEvents, extractLocations } from "./api";
 import { OffLineAlert } from "./Alert";
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 import "./App.css";
 
@@ -16,7 +25,7 @@ class App extends Component {
     currentLocation: "all",
   };
 
-  // Filters events based on location and number given in user input
+  // Filters events based on location and number given in user input.
   updateEvents = (location, eventCount) => {
     const { currentLocation, numberOfEvents } = this.state;
     if (location) {
@@ -70,6 +79,18 @@ class App extends Component {
     });
   }
 
+  // Count how many events has each city.
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location)
+        .length;
+      const city = location.split(" ").shift();
+      return { city, number };
+    });
+    return data;
+  };
+
   componentWillUnmount() {
     this.mounted = false;
   }
@@ -89,6 +110,31 @@ class App extends Component {
             updateEvents={this.updateEvents}
           />
           <OffLineAlert text={this.state.offLineText} />
+          <div className="chart-wrap">
+            <h4>Events in each city</h4>
+
+            <ResponsiveContainer height={400}>
+              <ScatterChart
+                margin={{
+                  top: 20,
+                  right: 20,
+                  bottom: 20,
+                  left: 20,
+                }}
+              >
+                <CartesianGrid />
+                <XAxis type="category" dataKey="city" name="city" />
+                <YAxis
+                  type="number"
+                  dataKey="number"
+                  name="number of events"
+                  allowDecimals={false}
+                />
+                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                <Scatter data={this.getData()} fill="#a1ef8b" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
           <EventList events={this.state.events} />
         </div>
       </div>

@@ -67,7 +67,7 @@ const checkToken = async (accessToken) => {
 };
 
 export const getEvents = async () => {
-  // Display loading progress
+  // Display loading progress.
   NProgress.start();
 
   if (window.location.href.startsWith("http://localhost")) {
