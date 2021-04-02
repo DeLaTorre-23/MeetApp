@@ -13,9 +13,9 @@ body {
   background-repeat: no-repeat;
   background-position: 0 0px;
   scroll-behavior: smooth;
-  -webkit-background-size: cover;
+  /*-webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover;
+  -o-background-size: cover;*/
 
   /* background-size: cover; */
 }
