@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
+import EventGenre from "./EventGenre";
 import { getEvents, extractLocations } from "./api";
 import { OffLineAlert } from "./Alert";
 import {
@@ -96,46 +97,52 @@ class App extends Component {
   }
 
   render() {
+    const { eventCount, events, locations } = this.state;
     return (
       <div className="App">
         <div className="main-wrap">
           <h1>Meet App</h1>
-          <CitySearch
-            locations={this.state.locations}
-            updateEvents={this.updateEvents}
-          />
+          <CitySearch locations={locations} updateEvents={this.updateEvents} />
           <NumberOfEvents
-            locations={this.state.locations}
-            eventCount={this.state.eventCount}
+            locations={locations}
+            eventCount={eventCount}
             updateEvents={this.updateEvents}
           />
           <OffLineAlert text={this.state.offLineText} />
-          <div className="chart-wrap">
-            <h4>Events in each city</h4>
 
-            <ResponsiveContainer height={400}>
-              <ScatterChart
-                margin={{
-                  top: 20,
-                  right: 20,
-                  bottom: 20,
-                  left: 20,
-                }}
+          <div className="data-chart">
+            <h4>Events in each city</h4>
+            <div className="chart-wrap">
+              <EventGenre events={events} />
+              <ResponsiveContainer
+                className="chart-scatterChart"
+                width={400}
+                height={400}
               >
-                <CartesianGrid />
-                <XAxis type="category" dataKey="city" name="city" />
-                <YAxis
-                  type="number"
-                  dataKey="number"
-                  name="number of events"
-                  allowDecimals={false}
-                />
-                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                <Scatter data={this.getData()} fill="#a1ef8b" />
-              </ScatterChart>
-            </ResponsiveContainer>
+                <ScatterChart
+                  margin={{
+                    top: 20,
+                    right: 20,
+                    bottom: 20,
+                    left: 20,
+                  }}
+                >
+                  <CartesianGrid />
+                  <XAxis type="category" dataKey="city" name="city" />
+                  <YAxis
+                    type="number"
+                    dataKey="number"
+                    name="number of events"
+                    allowDecimals={false}
+                  />
+                  <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                  <Scatter data={this.getData()} fill="#a1ef8b" />
+                </ScatterChart>
+              </ResponsiveContainer>
+            </div>
           </div>
-          <EventList events={this.state.events} />
+
+          <EventList events={events} />
         </div>
       </div>
     );
