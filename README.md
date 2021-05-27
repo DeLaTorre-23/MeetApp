@@ -4,15 +4,9 @@ MeetApp is serverless, progressive web application (PWA) with React using a test
 
 Meet App allows users to search for a list of Web develope events hosted in a specific city. The user can view charts that display how many events will take place in that city on upcoming days as well as view the popularity of event genres in the form of a pie chart.
 
-<<<<<<< HEAD
 - Serverless : No backend maintenance, easy to scale, always available, no cost for idle time.
 - PWAs : (progressive web application) Instant loading, offline support, push notifications, “add to home screen” prompt, responsive design, and cross-platform compatibility.
 - TDD : (test-driven development) Its writes the test before writing the actual functionality for the app in code.
-=======
-● Serverless : No backend maintenance, easy to scale, always available, no cost for idle time.
-● PWAs : (progressive web application) Instant loading, offline support, push notifications, “add to home screen” prompt, responsive design, and cross-platform compatibility.
-● TDD : (test-driven development) Its writes the test before writing the actual functionality for the app in code.
->>>>>>> 426f11b05b17d91186b48106872614a11ece1623
 
 ## Technologies
 
